@@ -4,72 +4,194 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rabel — Hajj Baggage Logistics</title>
-<meta name="description" content="Rabel Hajj Baggage Logistics — select your role to sign in to its console." />
+<meta name="description" content="Rabel — the Hajj Baggage Logistics platform. One system, ten role-based consoles, end-to-end bag tracking from check-in to accommodation." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js"></script>
 <style>
   :root{
     --bg:#F8FAFC; --surface:#FFFFFF; --surface-2:#F1F5F9; --border:#E2E8F0; --border-strong:#CBD5E1;
     --text:#0F172A; --text-2:#334155; --muted:#64748B;
-    --brand:#1D4ED8; --brand-soft:#DBEAFE;
+    --brand:#1D4ED8; --brand-2:#4338CA; --brand-dark:#111C44; --brand-soft:#DBEAFE;
     --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-    --fs-xs:12px; --fs-sm:13px; --fs-base:15px; --fs-md:17px; --fs-lg:20px; --fs-xl:24px; --fs-2xl:30px; --fs-hero:40px;
-    --fw-medium:500; --fw-semibold:600; --fw-bold:700; --fw-extrabold:800; --lh:1.5;
-    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px;
-    --r-sm:6px; --r:10px; --r-lg:16px; --r-pill:999px;
-    --shadow-1:0 1px 2px rgba(15,23,42,.06); --shadow-2:0 4px 16px rgba(15,23,42,.08); --shadow-3:0 16px 40px rgba(15,23,42,.14);
+    --fs-xs:12px; --fs-sm:13px; --fs-base:15px; --fs-md:17px; --fs-lg:20px; --fs-xl:24px; --fs-2xl:32px; --fs-hero:clamp(34px, 5.2vw, 58px);
+    --fw-medium:500; --fw-semibold:600; --fw-bold:700; --fw-extrabold:800; --fw-black:900; --lh:1.55;
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --s10:40px; --s12:48px; --s16:64px; --s20:80px;
+    --r-sm:8px; --r:12px; --r-lg:18px; --r-xl:24px; --r-pill:999px;
+    --shadow-1:0 1px 2px rgba(15,23,42,.06); --shadow-2:0 8px 24px rgba(15,23,42,.08); --shadow-3:0 24px 56px rgba(15,23,42,.18);
     --focus:0 0 0 3px rgba(29,78,216,.35);
-    --t-fast:120ms; --t:200ms;
+    --t-fast:150ms; --t:260ms; --ease:cubic-bezier(.22,1,.36,1);
   }
   @media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
   *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   html,body{margin:0;padding:0}
   body{
     font-family:var(--font); font-size:var(--fs-base); line-height:var(--lh); color:var(--text);
-    background:
-      radial-gradient(1200px 600px at 10% -10%, var(--brand-soft) 0%, transparent 60%),
-      var(--bg);
-    min-height:100vh;
+    background:var(--bg); min-height:100vh; overflow-x:hidden;
   }
   a{color:inherit;text-decoration:none}
-  button{font:inherit;cursor:pointer}
+  button{font:inherit;cursor:pointer;background:none;border:none;color:inherit}
+  img,svg{display:block}
   :focus-visible{outline:none;box-shadow:var(--focus);border-radius:var(--r-sm)}
-
   .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .skip-link{position:absolute;left:-9999px;top:var(--s2);z-index:1000;background:var(--brand);color:#fff;padding:var(--s2) var(--s4);border-radius:var(--r-sm)}
   .skip-link:focus{left:var(--s2)}
 
-  .page{max-width:1120px;margin-inline:auto;padding:var(--s8) var(--s5) var(--s16)}
+  .wrap{max-width:1180px;margin-inline:auto;padding-inline:var(--s5)}
 
-  .hero{text-align:center;max-width:720px;margin-inline:auto;margin-block-end:var(--s10)}
-  .hero .brand-row{display:flex;align-items:center;justify-content:center;gap:var(--s3);margin-block-end:var(--s5)}
-  .hero .brand-mark{
-    width:52px;height:52px;border-radius:var(--r-lg);background:var(--brand);color:#fff;
-    display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-2);flex:none;
+  /* ===== Buttons ===== */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);height:48px;padding-inline:var(--s6);border-radius:var(--r-pill);font-weight:var(--fw-semibold);font-size:var(--fs-base);transition:transform var(--t-fast),box-shadow var(--t-fast),background var(--t-fast),color var(--t-fast);white-space:nowrap}
+  .btn:active{transform:scale(.97)}
+  .btn svg{width:18px;height:18px}
+  .btn-sm{height:40px;padding-inline:var(--s5);font-size:var(--fs-sm)}
+  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 8px 20px rgba(29,78,216,.32)}
+  .btn-primary:hover{box-shadow:0 12px 28px rgba(29,78,216,.42);transform:translateY(-1px)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28)}
+  .btn-ghost:hover{background:rgba(255,255,255,.16)}
+  .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border-strong)}
+  .btn-outline:hover{background:var(--surface-2)}
+
+  /* ===== Nav ===== */
+  .nav{
+    position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    background:rgba(255,255,255,.72); border-bottom:1px solid var(--border);
   }
-  .hero .brand-text{text-align:start;line-height:1.2}
-  .hero .brand-name{font-size:var(--fs-xl);font-weight:var(--fw-extrabold);color:var(--brand);display:block}
-  .hero .brand-ar{font-size:var(--fs-sm);color:var(--muted);display:block}
-  .hero h1{font-size:var(--fs-hero);font-weight:var(--fw-extrabold);margin:0 0 var(--s3);letter-spacing:-.02em}
-  .hero p{font-size:var(--fs-md);color:var(--text-2);margin:0}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav-brand{display:flex;align-items:center;gap:var(--s3)}
+  .nav-brand .mark{width:36px;height:36px;border-radius:var(--r);background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;display:flex;align-items:center;justify-content:center;flex:none}
+  .nav-brand .mark svg{width:19px;height:19px}
+  .nav-brand .name{font-weight:var(--fw-extrabold);font-size:var(--fs-lg);color:var(--brand-dark);line-height:1}
+  .nav-brand .tag{display:block;font-size:11px;color:var(--muted);font-weight:var(--fw-medium)}
+  .nav-links{display:flex;align-items:center;gap:var(--s6)}
+  .nav-links a{font-size:var(--fs-sm);font-weight:var(--fw-medium);color:var(--text-2)}
+  .nav-links a:hover{color:var(--brand)}
+  .nav-actions{display:flex;align-items:center;gap:var(--s3)}
+  @media (max-width:760px){ .nav-links{display:none} }
 
-  .role-grid{
-    display:grid; gap:var(--s5);
-    grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
+  /* ===== View switching ===== */
+  #roles-view{display:none}
+  body.show-roles #landing-view{display:none}
+  body.show-roles #roles-view{display:block}
+  .view-enter{animation:viewFade var(--t) var(--ease)}
+  @keyframes viewFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative; overflow:hidden; color:#fff;
+    background:
+      radial-gradient(900px 520px at 85% -10%, rgba(99,102,241,.55), transparent 60%),
+      radial-gradient(700px 480px at 0% 10%, rgba(37,99,235,.5), transparent 55%),
+      linear-gradient(160deg, var(--brand-dark) 0%, #142357 45%, var(--brand-2) 100%);
+    padding-block:var(--s20) var(--s16);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.14) 1px, transparent 1px);
+    background-size:28px 28px;
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), transparent 75%);
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .hero-inner{max-width:760px;margin-inline:auto;text-align:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:var(--s2);padding:6px var(--s4);border-radius:var(--r-pill);
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);font-size:var(--fs-xs);font-weight:var(--fw-semibold);
+    letter-spacing:.02em;margin-block-end:var(--s6);
+  }
+  .eyebrow svg{width:14px;height:14px;color:#A7F3D0}
+  .hero h1{font-size:var(--fs-hero);font-weight:var(--fw-black);letter-spacing:-.02em;margin:0 0 var(--s5);line-height:1.08}
+  .hero h1 .accent{background:linear-gradient(135deg,#A7F3D0,#93C5FD);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.lead{font-size:var(--fs-md);color:rgba(255,255,255,.82);max-width:600px;margin:0 auto var(--s8)}
+  .hero-ctas{display:flex;align-items:center;justify-content:center;gap:var(--s3);flex-wrap:wrap;margin-block-end:var(--s10)}
+
+  .stat-strip{display:flex;justify-content:center;gap:var(--s10);flex-wrap:wrap;padding-block-start:var(--s8);border-top:1px solid rgba(255,255,255,.16)}
+  .stat{text-align:center}
+  .stat .num{font-size:var(--fs-2xl);font-weight:var(--fw-extrabold);display:block;background:linear-gradient(135deg,#fff,#CBD5E1);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .stat .label{font-size:var(--fs-xs);color:rgba(255,255,255,.68);text-transform:uppercase;letter-spacing:.05em;margin-block-start:4px}
+
+  /* ===== Section shell ===== */
+  section{padding-block:var(--s16)}
+  .section-head{text-align:center;max-width:620px;margin:0 auto var(--s12)}
+  .section-kicker{font-size:var(--fs-xs);font-weight:var(--fw-bold);color:var(--brand);text-transform:uppercase;letter-spacing:.08em;margin:0 0 var(--s3)}
+  .section-head h2{font-size:var(--fs-2xl);font-weight:var(--fw-extrabold);margin:0 0 var(--s3);letter-spacing:-.01em}
+  .section-head p{color:var(--muted);font-size:var(--fs-md);margin:0}
+
+  /* ===== Journey ===== */
+  .journey{background:var(--surface)}
+  .journey-rail{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s4);max-width:1040px;margin-inline:auto}
+  .journey-rail::before{
+    content:"";position:absolute;top:28px;left:5%;right:5%;height:2px;
+    background:repeating-linear-gradient(90deg,var(--border-strong) 0 10px, transparent 10px 18px);
+    z-index:0;
+  }
+  .journey-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s3)}
+  .journey-step .dot{width:56px;height:56px;border-radius:50%;background:var(--surface);border:2px solid var(--brand);color:var(--brand);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-1)}
+  .journey-step .dot svg{width:24px;height:24px}
+  .journey-step .step-title{font-size:var(--fs-sm);font-weight:var(--fw-semibold)}
+  .journey-step .step-desc{font-size:var(--fs-xs);color:var(--muted)}
+  @media (max-width:900px){
+    .journey-rail{grid-template-columns:1fr;gap:var(--s8)}
+    .journey-rail::before{display:none}
   }
 
+  /* ===== Features ===== */
+  .features{background:var(--surface-2)}
+  .feature-grid{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .feature-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s6);
+    box-shadow:var(--shadow-1);transition:transform var(--t-fast),box-shadow var(--t-fast);
+  }
+  .feature-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-2)}
+  .feature-icon{width:44px;height:44px;border-radius:var(--r);background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;margin-block-end:var(--s4)}
+  .feature-icon svg{width:22px;height:22px}
+  .feature-card h3{font-size:var(--fs-md);font-weight:var(--fw-semibold);margin:0 0 6px}
+  .feature-card p{font-size:var(--fs-sm);color:var(--muted);margin:0}
+
+  /* ===== Role teaser ===== */
+  .teaser{background:var(--surface);text-align:center}
+  .chip-row{display:flex;flex-wrap:wrap;gap:var(--s3);justify-content:center;max-width:860px;margin:0 auto var(--s10)}
+  .role-chip{
+    display:inline-flex;align-items:center;gap:var(--s2);padding:var(--s2) var(--s4);border-radius:var(--r-pill);
+    background:var(--surface);border:1px solid var(--border);font-size:var(--fs-sm);font-weight:var(--fw-medium);
+    box-shadow:var(--shadow-1);
+  }
+  .role-chip .dot-sm{width:8px;height:8px;border-radius:50%;flex:none}
+  .role-chip svg{width:15px;height:15px;color:var(--muted)}
+
+  /* ===== CTA banner ===== */
+  .cta-banner{
+    background:linear-gradient(135deg,var(--brand-dark),var(--brand-2));color:#fff;border-radius:var(--r-xl);
+    padding:var(--s12) var(--s8);text-align:center;max-width:1040px;margin:0 auto;
+  }
+  .cta-banner h2{font-size:var(--fs-2xl);font-weight:var(--fw-extrabold);margin:0 0 var(--s3)}
+  .cta-banner p{color:rgba(255,255,255,.82);margin:0 0 var(--s8);font-size:var(--fs-md)}
+
+  /* ===== Footer ===== */
+  .site-footer{background:var(--brand-dark);color:rgba(255,255,255,.7);padding-block:var(--s10) var(--s8)}
+  .site-footer .wrap{display:flex;flex-wrap:wrap;gap:var(--s5);align-items:center;justify-content:space-between}
+  .site-footer .brand-mini{display:flex;align-items:center;gap:var(--s2);color:#fff;font-weight:var(--fw-bold)}
+  .site-footer .brand-mini svg{width:16px;height:16px}
+  .site-footer small{display:block;margin-block-start:var(--s4);opacity:.6;font-size:var(--fs-xs);text-align:center}
+
+  /* ===== Roles view ===== */
+  .roles-header{text-align:center;max-width:680px;margin:0 auto var(--s10)}
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-sm);font-weight:var(--fw-semibold);color:var(--muted);margin-block-end:var(--s6)}
+  .back-link:hover{color:var(--brand)}
+  .back-link svg{width:16px;height:16px}
+  .roles-header h1{font-size:var(--fs-2xl);font-weight:var(--fw-extrabold);margin:0 0 var(--s3)}
+  .roles-header p{color:var(--muted);font-size:var(--fs-md);margin:0}
+
+  .role-grid{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit, minmax(270px, 1fr))}
   .role-card{
     position:relative; display:flex; flex-direction:column; gap:var(--s4);
     background:var(--surface); border:1px solid var(--border); border-radius:var(--r-lg);
     padding:var(--s6) var(--s5) var(--s5); box-shadow:var(--shadow-1);
     border-top:4px solid var(--role-accent, var(--brand));
-    transition:transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
+    transition:transform var(--t-fast), box-shadow var(--t-fast);
   }
   .role-card:hover{transform:translateY(-3px); box-shadow:var(--shadow-3)}
   .role-card:active{transform:translateY(-1px)}
-
   .role-icon{
     width:48px;height:48px;border-radius:var(--r);flex:none;
     background:color-mix(in srgb, var(--role-accent, var(--brand)) 14%, white);
@@ -77,45 +199,198 @@
     display:flex;align-items:center;justify-content:center;
   }
   .role-icon svg{width:24px;height:24px}
-
   .role-body{flex:1 1 auto}
   .role-title{font-size:var(--fs-md);font-weight:var(--fw-semibold);margin:0 0 6px}
   .role-desc{font-size:var(--fs-sm);color:var(--muted);margin:0}
-
-  .role-cta{
-    display:inline-flex; align-items:center; gap:var(--s2); justify-content:center;
-    font-size:var(--fs-sm); font-weight:var(--fw-semibold); color:var(--role-accent, var(--brand));
-    padding-block:var(--s2);
-  }
+  .role-cta{display:inline-flex;align-items:center;gap:var(--s2);justify-content:center;font-size:var(--fs-sm);font-weight:var(--fw-semibold);color:var(--role-accent, var(--brand));padding-block:var(--s2)}
   .role-card:hover .role-cta svg{transform:translateX(3px)}
   .role-cta svg{width:16px;height:16px;transition:transform var(--t-fast)}
 
-  footer{text-align:center;margin-block-start:var(--s10);color:var(--muted);font-size:var(--fs-sm)}
-  footer p{margin:var(--s1) 0}
+  .roles-footer{text-align:center;margin-block-start:var(--s12);color:var(--muted);font-size:var(--fs-sm)}
+  .roles-footer p{margin:var(--s1) 0}
 </style>
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
-<main id="main" class="page" tabindex="-1">
-  <div class="hero">
-    <div class="brand-row">
-      <div class="brand-mark" aria-hidden="true"><i data-lucide="package" style="width:26px;height:26px"></i></div>
-      <div class="brand-text">
-        <span class="brand-name">Rabel</span>
-        <span class="brand-ar">رابل — خدمة أمتعة الحجاج</span>
-      </div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="wrap">
+    <a class="nav-brand" href="./index.html#" data-action="home" aria-label="Rabel home">
+      <span class="mark" aria-hidden="true"><i data-lucide="package"></i></span>
+      <span>
+        <span class="name">Rabel</span>
+        <span class="tag">Hajj Baggage Logistics</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#journey">Platform</a>
+      <a href="#features">Why Rabel</a>
+      <a href="#roles-teaser">Roles</a>
     </div>
-    <h1>Hajj Baggage Logistics</h1>
-    <p>Select your role below to sign in to its console. Each role has its own login screen and demo accounts.</p>
+    <div class="nav-actions">
+      <button type="button" class="btn btn-primary btn-sm" data-action="login">
+        Login <i data-lucide="arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main" tabindex="-1">
+
+  <!-- ============ LANDING VIEW ============ -->
+  <div id="landing-view">
+
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-inner">
+          <span class="eyebrow"><i data-lucide="sparkles"></i> Unified platform · 10 role-based consoles</span>
+          <h1>Every bag.<br>Every step. <span class="accent">One system.</span></h1>
+          <p class="lead">Rabel connects pilgrims, check-in staff, drivers, warehouse teams, airports, airlines, accommodation and delivery staff, and operations &amp; admin teams on one real-time baggage logistics platform — from city check-in to the hotel room door.</p>
+          <div class="hero-ctas">
+            <button type="button" class="btn btn-primary" data-action="login">
+              Login to your console <i data-lucide="arrow-right"></i>
+            </button>
+            <a class="btn btn-ghost" href="#journey">See how it works</a>
+          </div>
+        </div>
+        <div class="stat-strip">
+          <div class="stat"><span class="num">10</span><span class="label">Role Consoles</span></div>
+          <div class="stat"><span class="num">2</span><span class="label">Journeys Tracked</span></div>
+          <div class="stat"><span class="num">24/7</span><span class="label">Live Visibility</span></div>
+          <div class="stat"><span class="num">100%</span><span class="label">Chain of Custody</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey" id="journey">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-kicker">End-to-end flow</p>
+          <h2>One bag, fully tracked</h2>
+          <p>Every bag is scanned, verified and handed off at each stage — visible in real time across every console on the platform.</p>
+        </div>
+        <div class="journey-rail">
+          <div class="journey-step">
+            <span class="dot" aria-hidden="true"><i data-lucide="clipboard-check"></i></span>
+            <span class="step-title">Check-in</span>
+            <span class="step-desc">Tagged at the centre</span>
+          </div>
+          <div class="journey-step">
+            <span class="dot" aria-hidden="true"><i data-lucide="truck"></i></span>
+            <span class="step-title">Collection</span>
+            <span class="step-desc">Driven to the warehouse</span>
+          </div>
+          <div class="journey-step">
+            <span class="dot" aria-hidden="true"><i data-lucide="warehouse"></i></span>
+            <span class="step-title">Warehouse</span>
+            <span class="step-desc">Screened &amp; sorted</span>
+          </div>
+          <div class="journey-step">
+            <span class="dot" aria-hidden="true"><i data-lucide="plane"></i></span>
+            <span class="step-title">Airport</span>
+            <span class="step-desc">Loaded for the flight</span>
+          </div>
+          <div class="journey-step">
+            <span class="dot" aria-hidden="true"><i data-lucide="plane-landing"></i></span>
+            <span class="step-title">Arrival</span>
+            <span class="step-desc">Received &amp; handed off</span>
+          </div>
+          <div class="journey-step">
+            <span class="dot" aria-hidden="true"><i data-lucide="package-check"></i></span>
+            <span class="step-title">Delivery</span>
+            <span class="step-desc">Confirmed at the door</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-kicker">Why Rabel</p>
+          <h2>Built for every team on the ground</h2>
+          <p>Each role gets a console shaped around their actual workflow — not a generic dashboard.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true"><i data-lucide="scan-line"></i></span>
+            <h3>Real-time tracking</h3>
+            <p>Scan-based chain of custody from check-in to final delivery, visible the moment it happens.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true"><i data-lucide="users"></i></span>
+            <h3>Role-based consoles</h3>
+            <p>A purpose-built interface for every role in the chain — no training on tools you don't need.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+            <h3>Exception handling</h3>
+            <p>Missing, damaged or mismatched bags are flagged, escalated and resolved with a full audit trail.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon" aria-hidden="true"><i data-lucide="activity"></i></span>
+            <h3>Operational insight</h3>
+            <p>Live dashboards for operations and admin teams across both departure and arrival journeys.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="teaser" id="roles-teaser">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-kicker">Ten consoles, one platform</p>
+          <h2>Find your role</h2>
+          <p>Every person in the baggage journey has their own sign-in and their own console.</p>
+        </div>
+        <div class="chip-row" id="chip-row"></div>
+        <button type="button" class="btn btn-primary" data-action="login">
+          Login to get started <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-banner">
+          <h2>Ready to sign in?</h2>
+          <p>Choose your role and get straight to your console — demo accounts are provided on every login screen.</p>
+          <button type="button" class="btn btn-primary" data-action="login">
+            Login now <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <div class="role-grid" id="role-grid"></div>
+  <!-- ============ ROLES VIEW ============ -->
+  <div id="roles-view">
+    <section>
+      <div class="wrap">
+        <div class="roles-header">
+          <a href="#" class="back-link" data-action="home"><i data-lucide="arrow-left"></i> Back to home</a>
+          <h1>Choose your role</h1>
+          <p>Select your role below to sign in to its console. Each role has its own login screen and demo accounts.</p>
+        </div>
+        <div class="role-grid" id="role-grid"></div>
+        <div class="roles-footer">
+          <p>Rabel — Hajj Baggage Logistics Platform</p>
+          <p>Demo build — each console above has its own demo accounts on its login screen.</p>
+        </div>
+      </div>
+    </section>
+  </div>
 
-  <footer>
-    <p>Rabel — Hajj Baggage Logistics Platform</p>
-    <p>Demo build — each console below has its own demo accounts on its login screen.</p>
-  </footer>
 </main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="brand-mini"><i data-lucide="package"></i> Rabel</span>
+    <span>Hajj Baggage Logistics Platform</span>
+  </div>
+  <small>&copy; <span id="year"></span> Rabel. Demo build for the Hajj Baggage Logistics suite.</small>
+</footer>
 
 <script>
   var ROLES = [
@@ -131,6 +406,7 @@
     { folder: 'system-admin', name: 'System Admin', icon: 'settings', accent: '#475569', desc: 'Manage users, roles, configuration, and system-wide settings.' },
   ];
 
+  // Role cards (unchanged destinations: each role keeps its own login route)
   var grid = document.getElementById('role-grid');
   grid.innerHTML = ROLES.map(function (r) {
     return '' +
@@ -143,6 +419,48 @@
         '<span class="role-cta">Log in <i data-lucide="arrow-right"></i></span>' +
       '</a>';
   }).join('');
+
+  // Small role-name chip row on the landing page (preview only, not links)
+  var chips = document.getElementById('chip-row');
+  chips.innerHTML = ROLES.map(function (r) {
+    return '' +
+      '<span class="role-chip">' +
+        '<span class="dot-sm" style="background:' + r.accent + '"></span>' +
+        '<i data-lucide="' + r.icon + '"></i> ' + r.name +
+      '</span>';
+  }).join('');
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- View switching: landing <-> role chooser ----
+  function showRoles() {
+    document.body.classList.add('show-roles');
+    document.getElementById('roles-view').classList.add('view-enter');
+    history.replaceState(null, '', '#roles');
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    var heading = document.querySelector('.roles-header h1');
+    if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus(); }
+  }
+  function showLanding() {
+    document.body.classList.remove('show-roles');
+    document.getElementById('landing-view').classList.add('view-enter');
+    history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  function syncFromHash() {
+    if (location.hash === '#roles') showRoles();
+    else showLanding();
+  }
+
+  document.addEventListener('click', function (e) {
+    var actionEl = e.target.closest('[data-action]');
+    if (!actionEl) return;
+    var action = actionEl.dataset.action;
+    if (action === 'login') { e.preventDefault(); showRoles(); }
+    if (action === 'home') { e.preventDefault(); showLanding(); }
+  });
+  window.addEventListener('hashchange', syncFromHash);
+  syncFromHash();
 
   if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
 </script>

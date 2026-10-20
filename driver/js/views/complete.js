@@ -166,7 +166,7 @@ function renderEndShift() {
       await api.endShift();
       toast('Shift ended. See you next trip.', 'success');
       api.logout();
-      navigate('#/login');
+      window.location.href = '../index.html';
     } catch (err) { toast(err.message, 'error'); }
   });
 }

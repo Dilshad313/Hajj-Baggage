@@ -1,7 +1,6 @@
 import * as api from '../api.js';
 import { skeletonBlock, errorState, esc, icon, toast, fmtWeight } from '../ui.js';
 import { kpiTile } from '../components/kpi-tile.js';
-import { navigate } from '../router.js';
 
 const HANDOVER_TARGETS = ['Next shift (unspecified)', 'Omar', 'Yusuf', 'Bilal', 'Khalid (Supervisor)'];
 
@@ -85,7 +84,7 @@ function renderData(data) {
       await api.submitHandover({ notes, handoverTo, informedNextShift: informed });
       toast('Handover submitted. Shift ended.', 'success');
       api.logout();
-      navigate('#/login');
+      window.location.href = '../index.html';
     } catch (err) {
       toast(err.message, 'error');
     }

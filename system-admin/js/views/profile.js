@@ -1,6 +1,5 @@
 import * as api from '../api.js';
 import { skeletonBlock, errorState, toast, icon, esc } from '../ui.js';
-import { navigate } from '../router.js';
 
 let appEl = null;
 
@@ -44,6 +43,6 @@ function renderData(me) {
   appEl.querySelector('[data-act="logout"]').addEventListener('click', () => {
     api.logout();
     toast('You have been logged out.', 'info');
-    navigate('#/login');
+    window.location.href = '../index.html';
   });
 }

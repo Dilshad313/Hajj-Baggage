@@ -3,7 +3,6 @@ import {
   esc, icon, toast, fmtDateTime, skeletonBlock, errorState, confirmDialog,
 } from '../ui.js';
 import { kpiTile } from '../components/kpi-tile.js';
-import { navigate } from '../router.js';
 
 let appEl = null;
 let step = 'loading'; // loading | error | ready
@@ -159,5 +158,5 @@ async function onEndShift() {
   });
   if (!confirmed) return;
   api.logout();
-  navigate('#/login');
+  window.location.href = '../index.html';
 }

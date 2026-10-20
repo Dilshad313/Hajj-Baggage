@@ -4,7 +4,6 @@ import {
 } from '../ui.js';
 import { kpiTile } from '../components/kpi-tile.js';
 import { statusChip } from '../components/status-chip.js';
-import { navigate } from '../router.js';
 
 const CSV_COLUMNS = ['run', 'hotel', 'building', 'status', 'bags'];
 
@@ -170,7 +169,7 @@ async function endShiftFlow() {
       });
     });
     api.logout();
-    navigate('#/login');
+    window.location.href = '../index.html';
   } catch (err) {
     btn.disabled = false; btn.removeAttribute('aria-busy');
     renderEndShiftError(err.message);

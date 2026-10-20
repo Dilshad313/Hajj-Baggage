@@ -93,7 +93,7 @@ async function doLogout() {
   });
   if (!ok) return;
   api.logout();
-  navigate('#/login');
+  window.location.href = '../index.html';
 }
 
 async function doResetDemo() {

@@ -217,7 +217,7 @@ function openProfileDropdown() {
     if (act === 'logout') {
       closeAllDropdowns();
       api.logout();
-      navigate('#/login');
+      window.location.href = '../index.html';
       return;
     }
     if (act === 'demo-degrade') { await api.demoDegradeService(); toast('A service was degraded for the demo.', 'info'); }

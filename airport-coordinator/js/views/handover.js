@@ -2,7 +2,6 @@ import * as api from '../api.js';
 import {
   esc, icon, toast, fmtDateTime, skeletonBlock, errorState, confirmDialog,
 } from '../ui.js';
-import { navigate } from '../router.js';
 import { kpiTile } from '../components/kpi-tile.js';
 
 let appEl = null;
@@ -146,5 +145,5 @@ async function onEndShift() {
   });
   if (!proceed) return;
   api.logout();
-  navigate('#/login');
+  window.location.href = '../index.html';
 }

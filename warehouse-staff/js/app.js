@@ -260,7 +260,7 @@ function openProfileDropdown() {
   dd.addEventListener('click', async (e) => {
     const act = e.target.closest('[data-act]')?.dataset.act;
     if (!act) return;
-    if (act === 'logout') { closeAllDropdowns(); api.logout(); navigate('#/login'); return; }
+    if (act === 'logout') { closeAllDropdowns(); api.logout(); window.location.href = '../index.html'; return; }
     if (act === 'toggle-demo') {
       setDemoMode(!demoOn);
       toast(`Demo mode ${!demoOn ? 'on' : 'off'}.`, 'info');

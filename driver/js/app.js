@@ -199,10 +199,10 @@ async function openProfileMenu(anchorBtn) {
     const act = e.target.closest('[data-act]')?.dataset.act;
     if (!act) return;
     const refreshCurrent = () => { const c = getCurrent(); if (c && c.refresh) c.refresh(); };
-    if (act === 'logout') { closeProfileMenu(); api.logout(); navigate('#/login'); return; }
+    if (act === 'logout') { closeProfileMenu(); api.logout(); window.location.href = '../index.html'; return; }
     if (act === 'end-shift') {
       closeProfileMenu();
-      try { await api.endShift(); toast('Shift ended. See you next trip.', 'success'); navigate('#/login'); api.logout(); }
+      try { await api.endShift(); toast('Shift ended. See you next trip.', 'success'); api.logout(); window.location.href = '../index.html'; }
       catch (err) { toast(err.message, 'error'); }
       return;
     }

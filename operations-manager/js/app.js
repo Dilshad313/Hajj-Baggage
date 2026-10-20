@@ -235,7 +235,7 @@ function openProfileDropdown() {
     if (act === 'logout') {
       closeAllDropdowns();
       api.logout();
-      navigate('#/login');
+      window.location.href = '../index.html';
       return;
     }
     if (act === 'demo-exception') { await api.demoInjectException(); toast('A random exception was injected.', 'info'); refreshBellBadge(); }

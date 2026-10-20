@@ -3,7 +3,6 @@ import {
   esc, icon, toast, fmtDateTime, skeletonBlock, errorState, confirmDialog,
 } from '../ui.js';
 import { kpiTile } from '../components/kpi-tile.js';
-import { navigate } from '../router.js';
 
 let appEl = null;
 let data = null; // { openExceptions, batchesMidVerification, flightsNearCutoffUnconfirmed, notes }
@@ -149,5 +148,5 @@ async function onEndShift() {
   });
   if (!proceed) return;
   api.logout();
-  navigate('#/login');
+  window.location.href = '../index.html';
 }
