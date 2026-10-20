@@ -1,0 +1,27 @@
+/**
+ * Design tokens — identical across all 10 Rabel role apps.
+ * This app's accent: Driver (#7C3AED violet).
+ */
+:root{
+  /* neutrals */
+  --bg:#F8FAFC; --surface:#FFFFFF; --surface-2:#F1F5F9; --border:#E2E8F0; --border-strong:#CBD5E1;
+  --text:#0F172A; --text-2:#334155; --muted:#64748B; --disabled:#94A3B8;
+  /* role accent (this app) */
+  --accent:#7C3AED; --accent-hover:#6D28D9; --accent-soft:#EDE9FE; --on-accent:#FFFFFF;
+  /* semantic */
+  --success:#16A34A; --success-soft:#DCFCE7; --warning:#D97706; --warning-soft:#FEF3C7;
+  --danger:#DC2626;  --danger-soft:#FEE2E2;  --info:#2563EB;    --info-soft:#DBEAFE;
+  /* type */
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif; --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --fs-xs:12px; --fs-sm:13px; --fs-base:15px; --fs-md:17px; --fs-lg:20px; --fs-xl:24px; --fs-2xl:30px; --fs-hero:44px;
+  --fw-regular:400; --fw-medium:500; --fw-semibold:600; --fw-bold:700; --lh:1.5;
+  /* space (4px scale) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --s10:40px; --s12:48px;
+  /* shape & depth */
+  --r-sm:6px; --r:10px; --r-lg:14px; --r-pill:999px;
+  --shadow-1:0 1px 2px rgba(15,23,42,.06); --shadow-2:0 4px 16px rgba(15,23,42,.08); --shadow-3:0 12px 32px rgba(15,23,42,.14);
+  --focus:0 0 0 3px color-mix(in srgb,var(--accent) 35%,transparent);
+  --z-nav:100; --z-drawer:200; --z-modal:300; --z-toast:400;
+  --t-fast:120ms; --t:200ms;
+}
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }

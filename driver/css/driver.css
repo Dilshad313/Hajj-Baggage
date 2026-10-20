@@ -1,0 +1,56 @@
+/* Role-specific styles for Driver */
+
+/* Big status banner on the trip overview / map (In transit=accent, Security hold=red, At destination=blue, Completed=green) */
+.stage-banner{
+  display:flex;align-items:center;gap:var(--s3);padding:var(--s4) var(--s5);border-radius:var(--r-lg);
+  color:#fff;font-weight:var(--fw-semibold);margin-block-end:var(--s5);
+}
+.stage-banner.accent{background:var(--accent)}
+.stage-banner.danger{background:var(--danger)}
+.stage-banner.info{background:var(--info)}
+.stage-banner.success{background:var(--success)}
+.stage-banner.warning{background:var(--warning)}
+
+.big-prompt{text-align:center;padding:var(--s8) var(--s4)}
+.big-prompt .big-icon{width:72px;height:72px;margin-inline:auto;margin-block-end:var(--s4);color:var(--accent)}
+
+.vehicle-card{display:flex;align-items:center;gap:var(--s4);padding:var(--s4);background:var(--accent-soft);border-radius:var(--r-lg);margin-block-end:var(--s5)}
+.vehicle-card .plate{font-family:var(--mono);letter-spacing:.04em;font-size:var(--fs-xl);font-weight:var(--fw-bold)}
+
+.pretrip-row{padding:var(--s4) 0;border-bottom:1px solid var(--border)}
+.pretrip-row:last-child{border-bottom:none}
+.pretrip-row .pretrip-label{font-weight:var(--fw-medium);margin-block-end:var(--s2)}
+
+.count-live{text-align:center;padding:var(--s6) var(--s4)}
+.count-live .count-big{font-size:var(--fs-hero);font-weight:var(--fw-bold);line-height:1}
+.count-progress{height:10px;border-radius:var(--r-pill);background:var(--surface-2);overflow:hidden;margin-block-start:var(--s4)}
+.count-progress-bar{height:100%;background:var(--accent);transition:width var(--t) ease-out}
+
+.seal-display{display:flex;align-items:center;justify-content:center;gap:var(--s3);padding:var(--s6) var(--s4);background:var(--surface-2);border-radius:var(--r-lg);margin-block-end:var(--s5)}
+.seal-display .seal-number{font-family:var(--mono);letter-spacing:.04em;font-size:var(--fs-2xl);font-weight:var(--fw-bold)}
+
+.gps-sheet{position:sticky;bottom:0;background:var(--surface);border-top:1px solid var(--border);border-radius:var(--r-lg) var(--r-lg) 0 0;padding:var(--s5);box-shadow:var(--shadow-3);margin-inline:calc(var(--s4) * -1);margin-block-start:var(--s4)}
+@media (min-width:768px){.gps-sheet{margin-inline:0;border-radius:var(--r-lg)}}
+.gps-pulse{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-xs);font-weight:var(--fw-semibold)}
+.gps-pulse .dot{width:8px;height:8px;border-radius:50%;background:var(--success)}
+.gps-pulse.paused .dot{background:var(--muted)}
+.gps-pulse.active .dot{animation:gps-blink 1.4s ease-in-out infinite}
+@keyframes gps-blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+.manifest-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--border)}
+.manifest-row:last-child{border-bottom:none}
+.manifest-row .tag{font-family:var(--mono);letter-spacing:.02em}
+
+.doc-check-row{display:flex;align-items:center;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--border)}
+.doc-check-row:last-child{border-bottom:none}
+
+.offload-counter{text-align:center;padding:var(--s5) var(--s4)}
+.offload-counter .count-big{font-size:var(--fs-hero);font-weight:var(--fw-bold);line-height:1}
+
+.search-mode-banner{background:var(--warning-soft);color:#7C4A03;border-radius:var(--r-lg);padding:var(--s4);text-align:center;margin-block-end:var(--s4)}
+
+.trip-notify-banner{background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r-lg);padding:var(--s4);margin-block-end:var(--s5)}
+.late-banner{background:var(--danger-soft);color:#7F1D1D;border-radius:var(--r-lg);padding:var(--s4);margin-block-end:var(--s5);display:flex;align-items:center;gap:var(--s3)}
+
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3);margin-block-end:var(--s5)}
+@media (min-width:480px){.stat-grid{grid-template-columns:repeat(4,1fr)}}

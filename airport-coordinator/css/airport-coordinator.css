@@ -1,0 +1,9 @@
+/* Role-specific styles for Airport Coordinator */
+
+.shift-timer{font-family:var(--mono);letter-spacing:.02em;font-size:var(--fs-sm);color:var(--text-2)}
+
+.focus-switch-wrap{display:inline-flex}
+.focus-switch-wrap .segmented button[aria-selected="true"][data-focus-btn="arrival"]{color:var(--accent-2-hover)}
+
+.gate-badge{background:var(--accent-soft);color:var(--accent-hover);font-size:var(--fs-xs);font-weight:var(--fw-bold);padding:2px var(--s3);border-radius:var(--r-pill)}
+[data-focus="arrival"] .gate-badge{background:var(--accent-2-soft);color:var(--accent-2-hover)}

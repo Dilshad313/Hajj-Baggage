@@ -1,0 +1,82 @@
+/* Role-specific styles for Check-in Staff */
+
+.brand{display:flex;flex-direction:column;line-height:1.2}
+.brand .brand-name{font-weight:var(--fw-bold);color:var(--accent);font-size:var(--fs-lg)}
+.brand .brand-ar{font-size:10px;color:var(--muted)}
+
+.login-shell{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--surface-2);padding:var(--s4)}
+.login-card{width:100%;max-width:440px;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-2);padding:var(--s8) var(--s6)}
+.demo-chip-list{display:flex;flex-wrap:wrap;gap:var(--s2);margin-block-start:var(--s4)}
+.demo-chip{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);padding:4px var(--s3);font-size:var(--fs-xs);color:var(--text-2)}
+.demo-chip:hover{background:var(--accent-soft)}
+
+/* Shift timer badge in the topbar */
+.shift-timer{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-sm);font-weight:var(--fw-medium);color:var(--text-2)}
+
+/* Counter / check-in layout */
+.counter-shell{display:grid;grid-template-columns:280px 1fr;gap:var(--s6);align-items:start}
+@media (max-width:1023px){.counter-shell{grid-template-columns:1fr}}
+.counter-side{position:sticky;top:calc(64px + var(--s4));display:flex;flex-direction:column;gap:var(--s4)}
+@media (max-width:1023px){.counter-side{position:static}}
+.pilgrim-summary-photo{width:100%;aspect-ratio:3/4;background:var(--surface-2);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;color:var(--disabled);margin-block-end:var(--s4)}
+
+.bag-side-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--border)}
+.bag-side-row:last-child{border-bottom:none}
+.bag-side-row.current{background:var(--accent-soft);margin-inline:calc(var(--s2) * -1);padding-inline:var(--s2);border-radius:var(--r-sm)}
+
+/* Result cards (QR / Nusuk branches) */
+.result-card{border-radius:var(--r-lg);padding:var(--s5);margin-block-end:var(--s5)}
+.result-card.danger{background:var(--danger-soft);color:#7F1D1D}
+.result-card.warning{background:var(--warning-soft);color:#7C4A03}
+.result-card.info{background:var(--info-soft);color:#1E3A8A}
+.result-card.success{background:var(--success-soft);color:#14532D}
+
+/* Nusuk comparison table */
+.compare-table{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}
+.compare-table th{text-align:start;padding:var(--s2) var(--s3);color:var(--muted);font-weight:var(--fw-medium);border-bottom:1px solid var(--border)}
+.compare-table td{padding:var(--s2) var(--s3);border-bottom:1px solid var(--border)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table .match{color:var(--success)}
+.compare-table .mismatch{color:var(--danger);font-weight:var(--fw-semibold)}
+
+/* Weigh */
+.scale-readout{text-align:center;padding:var(--s6) var(--s4)}
+.scale-readout .weight-big{font-size:var(--fs-hero);font-weight:var(--fw-bold);line-height:1}
+
+/* Bag tag preview (portrait, 4x6in print target) */
+.tag-preview{
+  width:260px;margin-inline:auto;background:#fff;border:2px solid var(--text);border-radius:var(--r-sm);
+  padding:var(--s4);font-family:var(--mono);text-align:center;
+}
+.tag-preview .tag-no{font-size:var(--fs-xl);font-weight:var(--fw-bold);letter-spacing:.04em}
+.tag-preview .tag-barcode{margin-block:var(--s3)}
+.tag-preview .tag-barcode svg{margin-inline:auto}
+.tag-preview .tag-qr{margin-inline:auto;margin-block-start:var(--s3)}
+.tag-preview .tag-meta{font-size:var(--fs-xs);text-align:start;margin-block-start:var(--s3);line-height:1.6}
+
+/* Receipt preview (A5 print target) */
+.receipt-preview{max-width:420px;margin-inline:auto;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s6)}
+.receipt-preview .receipt-head{text-align:center;margin-block-end:var(--s5)}
+.receipt-preview table{width:100%;border-collapse:collapse;font-size:var(--fs-sm);margin-block:var(--s4)}
+.receipt-preview th,.receipt-preview td{padding:var(--s2) var(--s2);border-bottom:1px solid var(--border);text-align:start}
+.receipt-preview .receipt-total{display:flex;justify-content:space-between;font-weight:var(--fw-semibold);margin-block-start:var(--s3);padding-block-start:var(--s3);border-top:1px solid var(--border)}
+
+/* Manifest (A4 print target) */
+.manifest-preview{max-width:760px;margin-inline:auto;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s6)}
+
+@media print{
+  body *{visibility:hidden}
+  .print-area,.print-area *{visibility:visible}
+  .print-area{position:absolute;inset-block-start:0;inset-inline-start:0;width:100%}
+  .tag-preview{border:1px solid #000}
+}
+
+/* KPI dashboard grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4);margin-block-end:var(--s6)}
+@media (max-width:1023px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.kpi-grid{grid-template-columns:1fr}}
+
+.quick-action-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+@media (max-width:767px){.quick-action-grid{grid-template-columns:repeat(2,1fr)}}
+.quick-action{height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s2);padding:var(--s5) var(--s3);text-align:center}
+.quick-action svg{color:var(--accent);flex:none}

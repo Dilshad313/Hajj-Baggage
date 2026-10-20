@@ -1,0 +1,47 @@
+/* Role-specific styles for System Admin */
+
+.brand{display:flex;flex-direction:column;line-height:1.2}
+.brand .brand-name{font-weight:var(--fw-bold);color:var(--accent);font-size:var(--fs-lg)}
+.brand .brand-ar{font-size:10px;color:var(--muted)}
+
+.login-shell{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--surface-2);padding:var(--s4);
+}
+.login-card{width:100%;max-width:400px;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-2);padding:var(--s8) var(--s6)}
+.demo-chip-list{display:flex;flex-wrap:wrap;gap:var(--s2);margin-block-start:var(--s4)}
+.demo-chip{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);
+  padding:4px var(--s3);font-size:var(--fs-xs);color:var(--text-2);
+}
+.demo-chip:hover{background:var(--accent-soft)}
+
+.health-dot{width:10px;height:10px;border-radius:50%;flex:none}
+.health-dot.ok{background:var(--success)} .health-dot.degraded{background:var(--warning)} .health-dot.down{background:var(--danger)}
+
+.service-card{display:flex;flex-direction:column;gap:var(--s2)}
+.service-card .spark{height:36px}
+
+.secret-mask{font-family:var(--mono);letter-spacing:.02em;color:var(--text-2)}
+
+.reveal-timer{font-size:var(--fs-xs);color:var(--muted)}
+
+.step-log{background:var(--text);color:#fff;font-family:var(--mono);font-size:var(--fs-xs);border-radius:var(--r-sm);padding:var(--s3);display:flex;flex-direction:column;gap:4px;margin-block-start:var(--s3)}
+.step-log .ok{color:#86EFAC} .step-log .fail{color:#FCA5A5}
+
+.audit-diff{font-family:var(--mono);font-size:var(--fs-xs);background:var(--surface-2);border-radius:var(--r-sm);padding:var(--s3);white-space:pre-wrap;line-height:1.6}
+.audit-diff .line{display:block;padding:1px 4px;border-radius:3px}
+
+.perm-matrix{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}
+.perm-matrix th,.perm-matrix td{border:1px solid var(--border);padding:var(--s2);text-align:center}
+.perm-matrix th:first-child,.perm-matrix td:first-child{text-align:start}
+.perm-matrix input[type="checkbox"]{width:16px;height:16px;min-height:0}
+
+.rule-row{display:grid;grid-template-columns:2fr 1fr 2fr 1fr auto;gap:var(--s2);align-items:end;padding:var(--s3);border:1px solid var(--border);border-radius:var(--r);margin-block-end:var(--s2)}
+@media (max-width:1023px){.rule-row{grid-template-columns:1fr}}
+
+.export-check-list{display:flex;flex-direction:column;gap:var(--s2)}
+
+.handover-summary dt{font-weight:var(--fw-medium);color:var(--muted);font-size:var(--fs-sm)}
+.handover-summary dd{margin:0 0 var(--s3);font-size:var(--fs-md);font-weight:var(--fw-semibold)}
+
+.unsaved-dot{width:8px;height:8px;border-radius:50%;background:var(--warning);display:inline-block}

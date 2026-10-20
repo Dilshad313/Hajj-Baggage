@@ -1,0 +1,8 @@
+/* Role-specific styles for Warehouse Staff */
+
+.shift-timer{font-family:var(--mono);letter-spacing:.02em;font-size:var(--fs-sm);color:var(--text-2)}
+
+.workstation-badge{background:var(--accent-soft);color:var(--accent-hover);font-size:var(--fs-xs);font-weight:var(--fw-bold);padding:2px var(--s3);border-radius:var(--r-pill)}
+
+.scan-highlight{animation:scan-flash 2s ease-out}
+@keyframes scan-flash{0%{background:var(--accent-soft)}100%{background:transparent}}

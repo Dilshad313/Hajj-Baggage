@@ -1,0 +1,12 @@
+/* Role-specific styles for Delivery Staff */
+
+.stop-card-floor-chip{font-family:var(--mono);letter-spacing:.02em}
+
+.exception-attempt-row{border-inline-start:3px solid var(--border-strong);padding-inline-start:var(--s3);margin-block-end:var(--s3)}
+.exception-attempt-row.escalated{border-inline-start-color:var(--danger)}
+
+.trolley-checklist-row{display:flex;align-items:center;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--border)}
+.trolley-checklist-row:last-child{border-bottom:none}
+.trolley-checklist-row.checked{color:var(--success)}
+
+.room-door-prompt{text-align:center;padding:var(--s6) var(--s4)}

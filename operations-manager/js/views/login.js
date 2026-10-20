@@ -1,0 +1,89 @@
+import * as api from '../api.js';
+import { toast, announce } from '../ui.js';
+import { navigate } from '../router.js';
+
+const DEMO = { employeeId: 'OPS-001', pin: '1234' };
+
+/** @param {object} params @param {HTMLElement} app */
+export function render(params, app) {
+  app.innerHTML = `
+    <div class="login-shell">
+      <div class="login-card">
+        <div class="brand" style="margin-block-end:var(--s6)">
+          <span class="brand-name fs-xl">Rabel</span>
+          <span class="brand-ar">رابل — خدمة أمتعة الحجاج</span>
+        </div>
+        <h1 class="fs-lg">Operations Manager sign in</h1>
+        <p class="muted fs-sm" style="margin-block-end:var(--s5)">Control room console for departure and arrival operations.</p>
+        <div id="login-alert" role="alert"></div>
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="employeeId">Employee ID <span class="req">*</span></label>
+            <input id="employeeId" name="employeeId" type="text" autocomplete="username" placeholder="OPS-001" required />
+            <div class="error" id="err-employeeId" hidden></div>
+          </div>
+          <div class="field">
+            <label for="pin">PIN <span class="req">*</span></label>
+            <input id="pin" name="pin" type="password" inputmode="numeric" autocomplete="current-password" required />
+            <div class="error" id="err-pin" hidden></div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%" id="login-submit">
+            <span class="label">Sign in</span>
+          </button>
+        </form>
+        <p class="fs-sm muted" style="margin-block-start:var(--s5)">Demo account</p>
+        <div class="demo-chip-list">
+          <button type="button" class="demo-chip" data-demo="1">Layla — Operations Manager</button>
+        </div>
+      </div>
+    </div>`;
+
+  const form = app.querySelector('#login-form');
+  app.querySelector('[data-demo="1"]').addEventListener('click', () => {
+    form.employeeId.value = DEMO.employeeId;
+    form.pin.value = DEMO.pin;
+    form.employeeId.focus();
+  });
+
+  function validate() {
+    let valid = true;
+    const idErr = app.querySelector('#err-employeeId');
+    const pinErr = app.querySelector('#err-pin');
+    if (!form.employeeId.value.trim()) {
+      idErr.textContent = 'Employee ID is required.'; idErr.hidden = false;
+      form.employeeId.setAttribute('aria-invalid', 'true'); valid = false;
+    } else { idErr.hidden = true; form.employeeId.removeAttribute('aria-invalid'); }
+    if (!form.pin.value.trim()) {
+      pinErr.textContent = 'PIN is required.'; pinErr.hidden = false;
+      form.pin.setAttribute('aria-invalid', 'true'); valid = false;
+    } else { pinErr.hidden = true; form.pin.removeAttribute('aria-invalid'); }
+    return valid;
+  }
+  form.employeeId.addEventListener('blur', validate);
+  form.pin.addEventListener('blur', validate);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+    const btn = app.querySelector('#login-submit');
+    btn.disabled = true; btn.setAttribute('aria-busy', 'true');
+    btn.querySelector('.label').textContent = 'Signing in…';
+    const alertBox = app.querySelector('#login-alert');
+    alertBox.innerHTML = '';
+    try {
+      await api.login(form.employeeId.value.trim(), form.pin.value.trim());
+      toast('Welcome back.', 'success');
+      navigate('#/');
+    } catch (err) {
+      alertBox.innerHTML = `<div class="field error" style="background:var(--danger-soft);padding:var(--s3);border-radius:var(--r-sm);margin-block-end:var(--s3)">${err.message}</div>`;
+      announce(err.message);
+      btn.disabled = false; btn.removeAttribute('aria-busy');
+      btn.querySelector('.label').textContent = 'Sign in';
+    }
+  });
+
+  return { destroy };
+}
+
+/** No timers to clean up. */
+export function destroy() { /* no-op */ }

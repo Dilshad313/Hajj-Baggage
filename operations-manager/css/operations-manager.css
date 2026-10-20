@@ -1,0 +1,81 @@
+/* Role-specific styles for Operations Manager */
+
+.brand{display:flex;flex-direction:column;line-height:1.2}
+.brand .brand-name{font-weight:var(--fw-bold);color:var(--accent);font-size:var(--fs-lg)}
+.brand .brand-ar{font-size:10px;color:var(--muted)}
+
+.login-shell{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--surface-2);padding:var(--s4);
+}
+.login-card{width:100%;max-width:400px;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-2);padding:var(--s8) var(--s6)}
+.demo-chip-list{display:flex;flex-wrap:wrap;gap:var(--s2);margin-block-start:var(--s4)}
+.demo-chip{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-pill);
+  padding:4px var(--s3);font-size:var(--fs-xs);color:var(--text-2);
+}
+.demo-chip:hover{background:var(--accent-soft)}
+
+/* Critical banner */
+.critical-banner{border-color:var(--danger);background:var(--danger-soft);margin-block-end:var(--s5)}
+
+/* Bag timeline */
+.bag-timeline{display:flex;flex-direction:column}
+.bag-timeline-item{display:flex;gap:var(--s3);position:relative;padding-block-end:var(--s6)}
+.bag-timeline-item:last-child{padding-block-end:0}
+.bag-timeline-item::before{
+  content:"";position:absolute;inset-inline-start:15px;top:32px;bottom:0;width:2px;background:var(--border);
+}
+.bag-timeline-item:last-child::before{display:none}
+.bag-timeline-dot{
+  width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:var(--accent-hover);
+  display:flex;align-items:center;justify-content:center;flex:none;z-index:1;
+}
+.bag-timeline-item.done .bag-timeline-dot{background:var(--success-soft);color:var(--success)}
+.bag-timeline-item.failed .bag-timeline-dot{background:var(--danger-soft);color:var(--danger)}
+.bag-timeline-item.future{opacity:.45}
+.bag-timeline-item.future .bag-timeline-dot{background:var(--surface-2);color:var(--disabled)}
+.bag-timeline-body{flex:1;padding-block-start:4px}
+.bag-timeline-head{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap}
+
+/* Live activity feed */
+.activity-feed{display:flex;flex-direction:column}
+.activity-item{display:flex;gap:var(--s3);padding-block:var(--s3);border-bottom:1px solid var(--border)}
+.activity-item:last-child{border-bottom:none}
+.activity-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;margin-block-start:7px}
+.activity-dot.exception{background:var(--danger)}
+
+/* Map */
+.map-wrap{height:460px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border)}
+#truck-map{height:100%;width:100%}
+.truck-marker{width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(15,23,42,.25)}
+.truck-marker.ontime{background:var(--accent)}
+.truck-marker.delayed{background:var(--danger)}
+
+/* SLA / risk */
+.sla-amber{color:var(--warning);font-weight:var(--fw-semibold)}
+.sla-red{color:var(--danger);font-weight:var(--fw-semibold)}
+
+/* Cut-off countdown */
+.countdown-tile{text-align:center}
+.countdown-tile .countdown-value{font-size:var(--fs-2xl);font-weight:var(--fw-bold);font-family:var(--mono)}
+.countdown-tile.risk .countdown-value{color:var(--danger)}
+
+/* Reconciliation */
+.recon-table td.diff-nonzero{color:var(--danger);font-weight:var(--fw-semibold)}
+
+/* Closure checklist */
+.checklist-item{display:flex;align-items:center;gap:var(--s3);padding:var(--s3) var(--s4);border:1px solid var(--border);border-radius:var(--r);margin-block-end:var(--s2)}
+.checklist-item.done{border-color:var(--success);background:var(--success-soft)}
+.checklist-item.pending{border-color:var(--warning);background:var(--warning-soft)}
+.checklist-icon{flex:none}
+
+/* Handover summary */
+.handover-summary dt{font-weight:var(--fw-medium);color:var(--muted);font-size:var(--fs-sm)}
+.handover-summary dd{margin:0 0 var(--s3);font-size:var(--fs-md);font-weight:var(--fw-semibold)}
+
+/* Audience chips (stakeholders) */
+.audience-chip{display:inline-flex;align-items:center;gap:var(--s2);padding:var(--s2) var(--s3);border:1px solid var(--border-strong);border-radius:var(--r-pill);font-size:var(--fs-sm);cursor:pointer;user-select:none}
+.audience-chip input{width:16px;height:16px;min-height:0}
+.audience-chip:has(input:checked){background:var(--accent-soft);border-color:var(--accent)}
+
+.last-updated{font-size:var(--fs-xs);color:var(--muted);display:flex;align-items:center;gap:var(--s2)}

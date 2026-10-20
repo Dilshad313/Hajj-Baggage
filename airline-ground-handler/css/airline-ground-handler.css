@@ -1,0 +1,12 @@
+/* Role-specific styles for Airline / Ground Handler */
+
+.shift-timer{font-family:var(--mono);letter-spacing:.02em;font-size:var(--fs-sm);color:var(--text-2)}
+
+.airline-badge{background:var(--accent-soft);color:var(--accent-hover);font-size:var(--fs-xs);font-weight:var(--fw-bold);padding:2px var(--s3);border-radius:var(--r-pill)}
+
+.diff-row{border-inline-start:3px solid var(--border-strong);padding-inline-start:var(--s3);margin-block-end:var(--s3)}
+.diff-row.mismatch{border-inline-start-color:var(--danger)}
+.diff-row.ok{border-inline-start-color:var(--success)}
+
+.diff-field{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s3);font-size:var(--fs-sm);padding-block:2px}
+.diff-field .diff-mismatch-value{color:var(--danger);text-decoration:underline wavy var(--danger);text-decoration-skip-ink:none}

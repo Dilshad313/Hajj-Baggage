@@ -1,0 +1,16 @@
+/* Role-specific styles for Pilgrim */
+
+.greeting{font-size:var(--fs-lg);font-weight:var(--fw-semibold)}
+
+.info-note{background:var(--info-soft);color:#1E3A8A;border-radius:var(--r);padding:var(--s3) var(--s4);font-size:var(--fs-sm);display:flex;gap:var(--s2)}
+.warn-note{background:var(--warning-soft);color:#7C2D12;border-radius:var(--r);padding:var(--s3) var(--s4);font-size:var(--fs-sm);display:flex;gap:var(--s2)}
+
+.slot-chip{padding:var(--s2) var(--s3);border:1px solid var(--border-strong);border-radius:var(--r-pill);font-size:var(--fs-sm);background:var(--surface)}
+.slot-chip[aria-selected="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.slot-chip:disabled{opacity:.4;cursor:not-allowed}
+
+.date-chip-row{display:flex;gap:var(--s2);overflow-x:auto;padding-block-end:var(--s2)}
+.date-chip{flex:none;padding:var(--s2) var(--s4);border:1px solid var(--border-strong);border-radius:var(--r-lg);font-size:var(--fs-sm);background:var(--surface);text-align:center}
+.date-chip[aria-selected="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-hover)}
+
+.masked-passport{font-family:var(--mono);letter-spacing:.04em}

@@ -1,0 +1,14 @@
+/* Role-specific styles for Accommodation Receiving Staff */
+
+.shift-timer{font-family:var(--mono);letter-spacing:.02em;font-size:var(--fs-sm);color:var(--text-2)}
+
+.manual-log-chip{background:var(--warning-soft);color:var(--warning)}
+
+.discrepancy-row{border-inline-start:3px solid var(--border-strong);padding-inline-start:var(--s3);margin-block-end:var(--s3)}
+.discrepancy-row.missing{border-inline-start-color:var(--danger)}
+.discrepancy-row.damaged{border-inline-start-color:var(--warning)}
+
+.investigate-checklist-item{display:flex;align-items:flex-start;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--border)}
+.investigate-checklist-item:last-child{border-bottom:none}
+
+.room-receipt{max-width:640px;margin-inline:auto}
