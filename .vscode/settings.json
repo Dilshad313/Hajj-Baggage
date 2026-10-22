@@ -1,0 +1,7 @@
+{
+  "livePreview.autoRefreshPreview": "Never",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.ignoreFiles": [
+    "**/*"
+  ]
+}

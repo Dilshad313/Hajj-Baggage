@@ -334,9 +334,16 @@ function registerRoutes() {
   });
 }
 
+/** True while the user is mid-interaction (typing, or a modal/drawer open) — skip polling so a background refresh can't steal focus or close an open dialog. */
+function isUserBusy() {
+  const el = document.activeElement;
+  if (el && ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName)) return true;
+  return !!document.querySelector('.overlay, .drawer-overlay');
+}
+
 function startPolling() {
   setInterval(() => {
-    if (document.visibilityState !== 'visible') return;
+    if (document.visibilityState !== 'visible' || isUserBusy()) return;
     const current = getCurrent();
     if (current && current.poll) current.poll();
     if (shellMounted) refreshBellBadge();
